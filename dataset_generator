@@ -1,0 +1,42 @@
+import pandas as pd
+import os
+
+def create_medical_dataset(output_path='data/medquad_dataset.csv'):
+    """
+    Create a clean, well-formatted medical dataset
+    
+    :param output_path: Path to save the CSV file
+    """
+    # Ensure data directory exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    # Medical Q&A Dataset
+    medical_data = [
+        {
+            'question': 'What are the symptoms of diabetes?',
+            'answer': 'Common symptoms of diabetes include increased thirst, frequent urination, blurred vision, fatigue, and slow-healing wounds.'
+        },
+        {
+            'question': 'How is diabetes diagnosed?',
+            'answer': 'Diabetes is diagnosed through blood tests that measure blood glucose levels, including fasting plasma glucose test, oral glucose tolerance test, and HbA1c test.'
+        },
+        {
+            'question': 'What is type 1 diabetes?',
+            'answer': 'Type 1 diabetes is an autoimmune condition where the pancreas produces little to no insulin. It typically develops in children and young adults and requires lifelong insulin therapy.'
+        },
+        {
+            'question': 'What are treatments for diabetes?',
+            'answer': 'Treatments for diabetes include insulin therapy, oral medications, diet management, regular exercise, and blood sugar monitoring.'
+        }
+    ]
+    
+    # Create DataFrame
+    df = pd.DataFrame(medical_data)
+    
+    # Save to CSV with proper encoding and error handling
+    df.to_csv(output_path, index=False, encoding='utf-8', quoting=1)
+    print(f"Medical dataset created successfully at {output_path}")
+
+# Run the dataset creation if script is run directly
+if __name__ == '__main__':
+    create_medical_dataset()
